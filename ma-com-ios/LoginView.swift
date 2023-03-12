@@ -6,6 +6,10 @@ struct LoginView: View {
   @State var username: String = ""
   @State var password: String = ""
   
+  var isSignInButtonDisabled: Bool {
+    [username, password].contains(where: \.isEmpty)
+  }
+  
   var body: some View {
     VStack {
       WelcomeText()
@@ -25,9 +29,10 @@ struct LoginView: View {
       
       Button(action: {print("Button tapped")}) {
         LoginButtonContent()
-      }
+      }.disabled(isSignInButtonDisabled)
     }
     .padding()
+
   }
 }
   
