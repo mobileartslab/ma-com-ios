@@ -13,6 +13,7 @@
 		0106F10E29B5BB9D008A2135 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0106F10D29B5BB9D008A2135 /* Preview Assets.xcassets */; };
 		0106F11029B5BB9D008A2135 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0106F10F29B5BB9D008A2135 /* Persistence.swift */; };
 		0106F11329B5BB9D008A2135 /* ma_com_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0106F11129B5BB9D008A2135 /* ma_com_ios.xcdatamodeld */; };
+		01A3F15329BD4ACD00F8AF9C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A3F15229BD4ACD00F8AF9C /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		0106F10F29B5BB9D008A2135 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		0106F11229B5BB9D008A2135 /* ma_com_ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ma_com_ios.xcdatamodel; sourceTree = "<group>"; };
 		016D057A29B5C8AE0095687B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		01A3F15229BD4ACD00F8AF9C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				016D057A29B5C8AE0095687B /* Info.plist */,
 				0106F10629B5BB9D008A2135 /* ma_com_iosApp.swift */,
+				01A3F15229BD4ACD00F8AF9C /* LoginView.swift */,
 				0106F10829B5BB9D008A2135 /* ContentView.swift */,
 				0106F10A29B5BB9D008A2135 /* Assets.xcassets */,
 				0106F10F29B5BB9D008A2135 /* Persistence.swift */,
@@ -148,6 +151,7 @@
 				0106F11029B5BB9D008A2135 /* Persistence.swift in Sources */,
 				0106F11329B5BB9D008A2135 /* ma_com_ios.xcdatamodeld in Sources */,
 				0106F10929B5BB9D008A2135 /* ContentView.swift in Sources */,
+				01A3F15329BD4ACD00F8AF9C /* LoginView.swift in Sources */,
 				0106F10729B5BB9D008A2135 /* ma_com_iosApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
