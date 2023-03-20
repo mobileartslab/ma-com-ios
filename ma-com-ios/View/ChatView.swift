@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ChatView: View {
   @State var typingMessage: String = ""
-  @EnvironmentObject var chatHelper: ChatHelper
+  var chatHelper = ChatHelper()
   @ObservedObject private var keyboard = KeyboardResponder()
     
   init() {

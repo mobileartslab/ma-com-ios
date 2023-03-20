@@ -6,14 +6,14 @@ struct Message: Hashable {
 }
 
 struct DataSource {
-  static let firstUser = User(name: "Maria Shadapova", avatar: "lady")
-  static var secondUser = User(name: "Duy Bui", avatar: "myAvatar", isCurrentUser: true)
+  static let firstUser = User(name: "Jack White", avatar: "jack")
+  static var secondUser = User(name: "Nick Sophinos", avatar: "volkslaufe", isCurrentUser: true)
   static let messages = [
-      Message(content: "Hi, I really love your templates and I would like to buy the chat template", user: DataSource.firstUser),
-      Message(content: "Thanks, nice to hear that, can I have your email please?", user: DataSource.secondUser),
-      Message(content: "😇", user: DataSource.firstUser),
-      Message(content: "Oh actually, I have just purchased the chat template, so please check your email, you might see my order", user: DataSource.firstUser),
-      Message(content: "Great, wait me a sec, let me check", user: DataSource.secondUser),
-      Message(content: "Sure", user: DataSource.firstUser)
+      Message(content: "The big three killed my baby, No money in my hand again", user: DataSource.firstUser),
+      Message(content: "Ah, icky thump, who'da thunk? Sittin' drunk on a wagon to Mexico", user: DataSource.secondUser),
+      Message(content: "The big three killed my baby, Nobody's comin' home again", user: DataSource.firstUser),
+      Message(content: "Why don't you take the day off and try to repair? A billion others don't seem to care Better ideas are stuck in the mud", user: DataSource.firstUser),
+      Message(content: "Left alone, I hit myself with a stone Went home and learned how to clean up after myself", user: DataSource.secondUser),
+      Message(content: "And my baby's my common sense So don't feed me planned obsolescence", user: DataSource.firstUser)
   ]
 }
