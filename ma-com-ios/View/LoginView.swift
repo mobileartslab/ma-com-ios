@@ -57,6 +57,20 @@ struct LoginView: View {
             LoginButtonContent()
           }
         ///}
+        ///
+        HStack {
+          Text( passwordError )
+            .fontWeight(.light)
+            .font(.footnote)
+            .foregroundColor(Color.red)
+          
+          if !passwordError.isEmpty  {
+            Image( systemName: "exclamationmark.triangle")
+             .foregroundColor(Color.red)
+             .font(.footnote)
+          }
+        }.padding(.top, 20)
+        
       }
       .padding()
     }
