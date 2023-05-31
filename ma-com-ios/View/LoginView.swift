@@ -20,11 +20,37 @@ struct LoginView: View {
           .cornerRadius(5.0)
           .padding(.bottom, 20)
         
+        HStack {
+          Text( usernameError )
+            .fontWeight(.light)
+            .font(.footnote)
+            .foregroundColor(Color.red)
+          
+          if !usernameError.isEmpty  {
+            Image( systemName: "exclamationmark.triangle")
+             .foregroundColor(Color.red)
+             .font(.footnote)
+          }
+        }
+        
         SecureField("Password", text: $password)
           .padding()
           .background(lightGreyColor)
           .cornerRadius(5.0)
           .padding(.bottom, 20)
+        
+        HStack {
+          Text( passwordError )
+            .fontWeight(.light)
+            .font(.footnote)
+            .foregroundColor(Color.red)
+          
+          if !passwordError.isEmpty  {
+            Image( systemName: "exclamationmark.triangle")
+             .foregroundColor(Color.red)
+             .font(.footnote)
+          }
+        }
         
         /// NavigationLink(destination: ChatView()) {
           Button(action: handleSubmit) {
@@ -44,7 +70,10 @@ struct LoginView: View {
     
   }
   
+  
   func validate() -> Bool {
+    usernameError = ""
+    passwordError = ""
     var isValid = true
     
     if username.isEmpty {
@@ -58,7 +87,8 @@ struct LoginView: View {
     return isValid
   }
 }
-  
+
+
 struct WelcomeText : View {
   var body: some View {
     return Text("Communicator")
@@ -67,6 +97,7 @@ struct WelcomeText : View {
       .padding(.bottom, 20)
     }
 }
+
 
 struct UserImage : View {
   var body: some View {
@@ -77,6 +108,7 @@ struct UserImage : View {
       .padding(.bottom, 75)
   }
 }
+
 
 struct LoginButtonContent : View {
   var body: some View {
@@ -89,6 +121,7 @@ struct LoginButtonContent : View {
       .cornerRadius(15.0)
   }
 }
+
 
 #if DEBUG
 struct LoginView_Previews: PreviewProvider {
