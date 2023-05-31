@@ -4,11 +4,9 @@ let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255
 
 struct LoginView: View {
   @State var username: String = ""
+  @State var usernameError: String = ""
   @State var password: String = ""
-  
-  var isSignInButtonDisabled: Bool {
-    [username, password].contains(where: \.isEmpty)
-  }
+  @State var passwordError: String = ""
   
   var body: some View {
     NavigationView {
@@ -28,15 +26,36 @@ struct LoginView: View {
           .cornerRadius(5.0)
           .padding(.bottom, 20)
         
-        NavigationLink(destination: ChatView()) {
-          Button(action: {print("Button tapped")}) {
+        /// NavigationLink(destination: ChatView()) {
+          Button(action: handleSubmit) {
             LoginButtonContent()
-          }.disabled(isSignInButtonDisabled)
-        }
+          }
+        ///}
       }
       .padding()
+    }
+  }
+  
+  func handleSubmit() {
+    if (!validate()) {
       
     }
+    print("Button tapped by Nick")
+    
+  }
+  
+  func validate() -> Bool {
+    var isValid = true
+    
+    if username.isEmpty {
+      usernameError = "Username required"
+      isValid = false
+    }
+    if password.isEmpty {
+      passwordError = "Password required"
+      isValid = false
+    }
+    return isValid
   }
 }
   
