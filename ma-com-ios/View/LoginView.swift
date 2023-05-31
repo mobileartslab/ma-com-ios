@@ -7,6 +7,7 @@ struct LoginView: View {
   @State var usernameError: String = ""
   @State var password: String = ""
   @State var passwordError: String = ""
+  @State var submitError: String = ""
   
   var body: some View {
     NavigationView {
@@ -18,7 +19,8 @@ struct LoginView: View {
           .padding()
           .background(lightGreyColor)
           .cornerRadius(5.0)
-          .padding(.bottom, 20)
+          .padding(.bottom, 10)
+          .textInputAutocapitalization(.never)
         
         HStack {
           Text( usernameError )
@@ -31,13 +33,13 @@ struct LoginView: View {
              .foregroundColor(Color.red)
              .font(.footnote)
           }
-        }
+        }.padding(.bottom, 20).frame(maxWidth: .infinity, alignment: .leading)
         
         SecureField("Password", text: $password)
           .padding()
           .background(lightGreyColor)
           .cornerRadius(5.0)
-          .padding(.bottom, 20)
+          .padding(.bottom, 10)
         
         HStack {
           Text( passwordError )
@@ -50,7 +52,7 @@ struct LoginView: View {
              .foregroundColor(Color.red)
              .font(.footnote)
           }
-        }
+        }.padding(.bottom, 20).frame(maxWidth: .infinity, alignment: .leading)
         
         /// NavigationLink(destination: ChatView()) {
           Button(action: handleSubmit) {
@@ -59,12 +61,12 @@ struct LoginView: View {
         ///}
         ///
         HStack {
-          Text( passwordError )
+          Text( submitError )
             .fontWeight(.light)
             .font(.footnote)
             .foregroundColor(Color.red)
           
-          if !passwordError.isEmpty  {
+          if !submitError.isEmpty  {
             Image( systemName: "exclamationmark.triangle")
              .foregroundColor(Color.red)
              .font(.footnote)
@@ -86,12 +88,19 @@ struct LoginView: View {
   
   
   func validate() -> Bool {
+    let emailValidationRegex = "^[\\p{L}0-9!#$%&'*+\\/=?^_`{|}~-][\\p{L}0-9.!#$%&'*+\\/=?^_`{|}~-]{0,63}@[\\p{L}0-9-]+(?:\\.[\\p{L}0-9-]{2,7})*$"
+    let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailValidationRegex)
+    let evalResult = emailPredicate.evaluate(with: username)
     usernameError = ""
     passwordError = ""
     var isValid = true
     
     if username.isEmpty {
       usernameError = "Username required"
+      isValid = false
+    }
+    else if evalResult == false {
+      usernameError = "Invalid email"
       isValid = false
     }
     if password.isEmpty {
