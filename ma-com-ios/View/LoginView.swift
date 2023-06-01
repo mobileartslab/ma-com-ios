@@ -82,6 +82,39 @@ struct LoginView: View {
     if (!validate()) {
       
     }
+    guard let url = URL(string: "http://192.168.86.29:8000/api/public/login") else {
+        return
+    }
+
+    print("Making api call...")
+
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    
+    
+    let body: [String: AnyHashable] = [
+        "username": username,
+        "password": password
+    ]
+    request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
+    
+    // Make the request
+    let task = URLSession.shared.dataTask(with: request) { data, _, error in
+        guard let data = data, error == nil else {
+            return
+        }
+
+        do {
+            let response = try JSONDecoder().decode(Response.self, from: data)
+            print("SUCCESS: \(response)")
+        }
+        catch {
+            print(error)
+        }
+    }
+    task.resume()
+    
     print("Button tapped by Nick")
     
   }
@@ -142,6 +175,16 @@ struct LoginButtonContent : View {
       .frame(width: 220, height: 60)
       .background(Color.green)
       .cornerRadius(15.0)
+  }
+}
+
+struct Response: Codable {
+  let error: String?
+  struct result: Codable {
+    let username: String
+    let salt: String
+    let password: String
+    let authStatus: Int
   }
 }
 
