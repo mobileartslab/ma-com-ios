@@ -20,6 +20,7 @@
 		0184452429C7906C003F6C84 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0184452329C7906C003F6C84 /* ViewExtension.swift */; };
 		0184452629C790A2003F6C84 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0184452529C790A2003F6C84 /* User.swift */; };
 		0184452829C790D7003F6C84 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0184452729C790D7003F6C84 /* Message.swift */; };
+		01D349C22A285B7A0008F874 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D349C12A285B7A0008F874 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		0184452329C7906C003F6C84 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		0184452529C790A2003F6C84 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0184452729C790D7003F6C84 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		01D349C12A285B7A0008F874 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 		0106F10529B5BB9D008A2135 /* ma-com-ios */ = {
 			isa = PBXGroup;
 			children = (
+				01D349C12A285B7A0008F874 /* Constants.swift */,
 				0184451E29C78FF1003F6C84 /* Helper */,
 				0184451D29C78FE2003F6C84 /* Models */,
 				0184451229C78C7D003F6C84 /* View */,
@@ -201,6 +204,7 @@
 				0184452829C790D7003F6C84 /* Message.swift in Sources */,
 				0106F10729B5BB9D008A2135 /* ma_com_iosApp.swift in Sources */,
 				0184452629C790A2003F6C84 /* User.swift in Sources */,
+				01D349C22A285B7A0008F874 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

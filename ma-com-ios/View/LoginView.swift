@@ -54,12 +54,11 @@ struct LoginView: View {
           }
         }.padding(.bottom, 20).frame(maxWidth: .infinity, alignment: .leading)
         
-        /// NavigationLink(destination: ChatView()) {
-          Button(action: handleSubmit) {
-            LoginButtonContent()
-          }
-        ///}
-        ///
+        Button(action: handleSubmit) {
+          LoginButtonContent()
+        }
+      
+       
         HStack {
           Text( submitError )
             .fontWeight(.light)
@@ -80,13 +79,11 @@ struct LoginView: View {
   
   func handleSubmit() {
     if (!validate()) {
-      
+      return
     }
     guard let url = URL(string: "http://192.168.86.29:8000/api/public/login") else {
-        return
+      return
     }
-
-    print("Making api call...")
 
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
@@ -94,27 +91,35 @@ struct LoginView: View {
     
     
     let body: [String: AnyHashable] = [
-        "username": username,
-        "password": password
+      "username": username,
+      "password": password
     ]
     request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
     
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
-        guard let data = data, error == nil else {
-            return
+      guard let data = data, error == nil else {
+        return
+      }
+      do {
+        let response: Response = try JSONDecoder().decode(Response.self, from: data)
+        print("DATA: \(data)")
+        print("SUCCESS: \(response)")
+        let authStatus = response.result.authStatus
+        print("authStatus: \(authStatus)")
+          
+        if authStatus == AUTH_STATUS.AUTHENTICATED {
+         /// navigate to ChatView()
         }
-        do {
-          let response: Response = try JSONDecoder().decode(Response.self, from: data)
-          print("DATA: \(data)")
-            print("SUCCESS: \(response)")
+        else {
+          submitError = "Invalid login"
         }
-        catch {
-            print(error)
-        }
+      }
+      catch {
+        submitError = "Invalid login"
+        print(error)
+      }
     }
     task.resume()
-    
-    print("Button tapped by Nick")
     
   }
   
@@ -125,6 +130,7 @@ struct LoginView: View {
     let evalResult = emailPredicate.evaluate(with: username)
     usernameError = ""
     passwordError = ""
+    submitError = ""
     var isValid = true
     
     if username.isEmpty {
@@ -177,60 +183,45 @@ struct LoginButtonContent : View {
   }
 }
 
-/*
-struct Response: Codable {
-  let error: String?
-  struct result: Codable {
-    let username: String
-    let salt: String
-    let password: String
-    let authStatus: Int
-  }
-}
-*/
 
-// MARK: - Welcome
 struct Response: Codable {
-    let error: JSONNull?
-    let result: Result
+  let error: JSONNull?
+  let result: Result
 }
 
-// MARK: - Result
 struct Result: Codable {
-    let id: Int
-    let username, salt, password: String
-    let authStatus: Int
+  let id: Int
+  let username, salt, password: String
+  let authStatus: Int
 }
-
-// MARK: - Encode/decode helpers
 
 class JSONNull: Codable, Hashable {
 
-    public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
-        return true
-    }
+  public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
+    return true
+  }
 
-    public var hashValue: Int {
-        return 0
-    }
+  public var hashValue: Int {
+    return 0
+  }
 
-    public func hash(into hasher: inout Hasher) {
-        // No-op
-    }
+  public func hash(into hasher: inout Hasher) {
+    // No-op
+  }
 
-    public init() {}
+  public init() {}
 
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if !container.decodeNil() {
-            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
-        }
+  public required init(from decoder: Decoder) throws {
+    let container = try decoder.singleValueContainer()
+    if !container.decodeNil() {
+      throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
     }
+  }
 
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encodeNil()
-    }
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.singleValueContainer()
+    try container.encodeNil()
+  }
 }
 
 #if DEBUG
