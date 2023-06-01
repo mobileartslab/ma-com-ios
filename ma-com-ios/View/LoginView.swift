@@ -99,14 +99,13 @@ struct LoginView: View {
     ]
     request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
     
-    // Make the request
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
         guard let data = data, error == nil else {
             return
         }
-
         do {
-            let response = try JSONDecoder().decode(Response.self, from: data)
+          let response: Response = try JSONDecoder().decode(Response.self, from: data)
+          print("DATA: \(data)")
             print("SUCCESS: \(response)")
         }
         catch {
@@ -178,6 +177,7 @@ struct LoginButtonContent : View {
   }
 }
 
+/*
 struct Response: Codable {
   let error: String?
   struct result: Codable {
@@ -187,7 +187,47 @@ struct Response: Codable {
     let authStatus: Int
   }
 }
+*/
 
+// MARK: - Welcome
+struct Response: Codable {
+    let error: JSONNull?
+    let result: Result
+}
+
+// MARK: - Result
+struct Result: Codable {
+    let id: Int
+    let username, salt, password: String
+    let authStatus: Int
+}
+
+// MARK: - Encode/decode helpers
+
+class JSONNull: Codable, Hashable {
+
+    public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
+        return true
+    }
+
+    public var hashValue: Int {
+        return 0
+    }
+
+    public init() {}
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if !container.decodeNil() {
+            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encodeNil()
+    }
+}
 
 #if DEBUG
 struct LoginView_Previews: PreviewProvider {
