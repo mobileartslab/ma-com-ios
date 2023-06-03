@@ -9,6 +9,8 @@ struct LoginView: View {
   @State var passwordError: String = ""
   @State var submitError: String = ""
   
+  @ObservedObject var screens: Screens
+  
   var body: some View {
     @EnvironmentObject var screens: Screens
       VStack {
@@ -75,11 +77,9 @@ struct LoginView: View {
       }
       .padding()
   }
-  func handleSubmit() {
-    /// @AppStorage("menu") var menu: Menu = .chat
-  }
   
-  func handleSubmit2() {
+  
+  func handleSubmit() {
     if (!validate()) {
       return
     }
@@ -110,7 +110,9 @@ struct LoginView: View {
         print("authStatus: \(authStatus)")
           
         if authStatus == AUTH_STATUS.AUTHENTICATED {
-         /// navigate to ChatView()
+          DispatchQueue.main.async {
+            screens.currentScreen = 2
+          }
         }
         else {
           submitError = "Invalid login"
@@ -226,10 +228,3 @@ class JSONNull: Codable, Hashable {
   }
 }
 
-#if DEBUG
-struct LoginView_Previews: PreviewProvider {
-  static var previews: some View {
-    LoginView()
-  }
-}
-#endif

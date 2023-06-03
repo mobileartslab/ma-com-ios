@@ -10,11 +10,11 @@ struct NavigationView: View {
     ZStack {
       switch screens.currentScreen {
         case 1:
-          LoginView()
+        LoginView(screens:screens)
         case 2:
           ChatView()
         default:
-          LoginView()
+          LoginView(screens:screens)
       }
     }
   }
