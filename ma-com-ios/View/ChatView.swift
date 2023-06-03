@@ -11,7 +11,6 @@ struct ChatView: View {
   }
     
   var body: some View {
-    NavigationView {
       VStack {
         List {
           ForEach(chatHelper.realTimeMessages, id: \.self) { msg in
@@ -29,9 +28,6 @@ struct ChatView: View {
       }.navigationBarTitle(Text(DataSource.firstUser.name), displayMode: .inline)
         .padding(.bottom, keyboard.currentHeight)
         .edgesIgnoringSafeArea(keyboard.currentHeight == 0.0 ? .leading: .bottom)
-    }.onTapGesture {
-      self.endEditing(true)
-    }
   }
     
   func sendMessage() {

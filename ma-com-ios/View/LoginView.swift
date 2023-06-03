@@ -10,7 +10,7 @@ struct LoginView: View {
   @State var submitError: String = ""
   
   var body: some View {
-    NavigationView {
+    @EnvironmentObject var screens: Screens
       VStack {
         WelcomeText()
         UserImage()
@@ -74,10 +74,12 @@ struct LoginView: View {
         
       }
       .padding()
-    }
+  }
+  func handleSubmit() {
+    /// @AppStorage("menu") var menu: Menu = .chat
   }
   
-  func handleSubmit() {
+  func handleSubmit2() {
     if (!validate()) {
       return
     }

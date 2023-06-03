@@ -21,6 +21,7 @@
 		0184452629C790A2003F6C84 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0184452529C790A2003F6C84 /* User.swift */; };
 		0184452829C790D7003F6C84 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0184452729C790D7003F6C84 /* Message.swift */; };
 		01D349C22A285B7A0008F874 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D349C12A285B7A0008F874 /* Constants.swift */; };
+		01D349E82A2AA3A10008F874 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D349E72A2AA3A10008F874 /* NavigationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		0184452529C790A2003F6C84 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0184452729C790D7003F6C84 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		01D349C12A285B7A0008F874 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		01D349E72A2AA3A10008F874 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				0184451729C78EB5003F6C84 /* ChatView.swift */,
 				0184451929C78EE3003F6C84 /* MessageView.swift */,
 				0184451B29C78F0A003F6C84 /* ContentMessageView.swift */,
+				01D349E72A2AA3A10008F874 /* NavigationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				0184451829C78EB5003F6C84 /* ChatView.swift in Sources */,
 				0106F11329B5BB9D008A2135 /* ma_com_ios.xcdatamodeld in Sources */,
 				0184452829C790D7003F6C84 /* Message.swift in Sources */,
+				01D349E82A2AA3A10008F874 /* NavigationView.swift in Sources */,
 				0106F10729B5BB9D008A2135 /* ma_com_iosApp.swift in Sources */,
 				0184452629C790A2003F6C84 /* User.swift in Sources */,
 				01D349C22A285B7A0008F874 /* Constants.swift in Sources */,
